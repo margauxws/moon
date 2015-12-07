@@ -1,0 +1,44 @@
+body{
+  font-family: Glacial Indifference, sans-serif;
+  align-items: center;
+  justify-content:center;
+  vertical-align: center;
+  height:100%; width: 100%;
+  display: flex;
+  z-index:0;
+  background-color: #F2EEE9;
+}
+#background{
+  z-index:-1;
+  background-color: red;
+  with:100%;height:100%;
+  position:fixed;
+}
+.sidebar {
+  max-width: 30%;
+  float: left;
+  position: absolute; left: 20px;
+  vertical align-center;
+  height: 100%;
+  margin: auto;
+  z-index:1;
+  }
+    .topfiller {
+    align-self: flex-start;
+    margin: auto;
+    max-height: 30%;
+    height: 25%;
+  }
+  .title:hover {
+    opacity: 50%;
+  }
+  .title {
+    max-width: 30%;
+    margin: auto;
+    z-index: 4;
+  }
+  .bottomfiller {
+    align-self: flex-end;
+    margin: auto;
+    max-height: 30%;
+  }
