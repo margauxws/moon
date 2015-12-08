@@ -32,11 +32,15 @@
     <div id="map"></div>
 
   <script>
+
+  $(document).ready(function(){
+
+
+
   function test () {
   console.log("testing")
 }
 var overlay;
-ApolloOverlay.prototype = new google.maps.OverlayView();
 
 
 function initMap() {
@@ -64,6 +68,9 @@ function ApolloOverlay(bounds, image, map) {
   this.div_ = null;
   this.setMap(map);
 }
+
+ApolloOverlay.prototype = new google.maps.OverlayView();
+
 
 ApolloOverlay.prototype.onAdd = function() {
 
@@ -149,5 +156,6 @@ function getNormalizedCoord(coord, zoom) {
   return {x: x, y: y};
 }
 
+})//end jquery document ready
     </script>
 </html>
