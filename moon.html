@@ -112,7 +112,7 @@ ApolloOverlay.prototype.onRemove = function() {
   this.div_ = null;
 };
 
-google.maps.event.addDomListener(window, 'load', initMap);
+// google.maps.event.addDomListener(window, 'load', initMap);
 
   var moonMapType = new google.maps.ImageMapType({
     getTileUrl: function(coord, zoom) {
@@ -154,6 +154,8 @@ function getNormalizedCoord(coord, zoom) {
   return {x: x, y: y};
 }
 
+
+  initMap();
 })//end jquery document ready
     </script>
 </html>
