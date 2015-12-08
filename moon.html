@@ -51,13 +51,10 @@ function initMap() {
     new google.maps.LatLng(9.58,65.1))
   var srcImage = "http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png"
   };
-  overlay = new USGSOverlay(bounds, srcImage, map);
+  overlay = new Apoll0Overlay(bounds, srcImage, map);
   }
-  // [END region_initialization]
 
-  // [START region_constructor]
-  /** @constructor */
-  function USGSOverlay(bounds, image, map) {
+  function ApolloOverlay(bounds, image, map) {
 
     // Initialize all properties.
     this.bounds_ = bounds;
@@ -79,7 +76,7 @@ function initMap() {
    * onAdd is called when the map's panes are ready and the overlay has been
    * added to the map.
    */
-  USGSOverlay.prototype.onAdd = function() {
+  ApolloOverlay.prototype.onAdd = function() {
 
     var div = document.createElement('div');
     div.style.borderStyle = 'none';
@@ -103,7 +100,7 @@ function initMap() {
   // [END region_attachment]
 
   // [START region_drawing]
-  USGSOverlay.prototype.draw = function() {
+  ApolloOverlay.prototype.draw = function() {
 
     // We use the south-west and north-east
     // coordinates of the overlay to peg it to the correct position and size.
@@ -128,7 +125,7 @@ function initMap() {
   // [START region_removal]
   // The onRemove() method will be called automatically from the API if
   // we ever set the overlay's map property to 'null'.
-  USGSOverlay.prototype.onRemove = function() {
+  ApolloOverlay.prototype.onRemove = function() {
     this.div_.parentNode.removeChild(this.div_);
     this.div_ = null;
   };
