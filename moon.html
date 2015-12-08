@@ -35,6 +35,8 @@
   function test () {
   console.log("testing")
 }
+var overlay;
+  ApolloOverlay.prototype = new google.maps.OverlayView();
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -43,7 +45,7 @@ function initMap() {
     streetViewControl: false,
     mapTypeControlOptions: {
       mapTypeIds: ['moon']
-    });
+    }});
   var bounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(15.19,67.52)
     new google.maps.LatLng(9.58,65.1))
