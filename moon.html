@@ -9,14 +9,14 @@
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9E4isHeXDswrWSl2UlX6ZmRPfa3vVmuQ&callback=initMap">
         </script>
     <style>
-      html, body {
+      html{
         height: 100%;
         margin: 0;
         padding: 0;
         font-family: Glacial Indifference, sans-serif;
       }
       #map {
-        height:80%;
+        height:100%;
         z-index: 2;
         margin: auto;
         width: inherit;
@@ -39,21 +39,19 @@
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 11.13, lng: 69.13},
-    zoom: 2,
+    zoom: 10,
     streetViewControl: false,
     mapTypeControlOptions: {
       mapTypeIds: ['moon']
     });
-  var imageBounds = {
-    north: 69
-    south:32
-    east:34
-    west:30
+  var bounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(15.19,67.52)
+    new google.maps.LatLng(12.64,73.2)
+    new google.maps.LatLng(7.21,70.67)
+    new google.maps.LatLng(9.58,65.1))
+  var srcImage = "http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png"
   };
 
-  historicalOverlay = new google.maps.GroundOverlay(
-    'http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_MED.png', imageBounds);
-    historicalOverlay.setMap(map);
   });
 
   var moonMapType = new google.maps.ImageMapType({
