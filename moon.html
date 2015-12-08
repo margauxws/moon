@@ -40,18 +40,19 @@ var overlay;
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 3,
+    center: {lat: 11.13, lng: 69.13},
+    zoom: 10,
     streetViewControl: false,
     mapTypeControlOptions: {
-      mapTypeIds: ['moon'] }
-    )};
+      mapTypeIds: ['moon']
+    });
   var bounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(15.19,67.52),
+    new google.maps.LatLng(15.19,67.52)
     new google.maps.LatLng(9.58,65.1))
   var srcImage = "http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png"
   };
   overlay = new Apoll0Overlay(bounds, srcImage, map);
-  }
+};
 
   function ApolloOverlay(bounds, image, map) {
     this.bounds_ = bounds;
@@ -59,7 +60,7 @@ function initMap() {
     this.map_ = map;
     this.div_ = null;
     this.setMap(map);
-  }
+  };
 
   ApolloOverlay.prototype.onAdd = function() {
 
