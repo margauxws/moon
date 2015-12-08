@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9E4isHeXDswrWSl2UlX6ZmRPfa3vVmuQ&callback=initMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9E4isHeXDswrWSl2UlX6ZmRPfa3vVmuQ"></script>
     <style>
       html{
         height: 100%;
@@ -50,8 +50,7 @@ function initMap() {
 
   var bounds = new google.maps.LatLngBounds(new google.maps.LatLng(12.64, 73.2),new google.maps.LatLng(9.58, 65.1));
 
-  var srcImage = 'https://developers.google.com/maps/documentation/' +
-      'http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png';
+  var srcImage = 'http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png';
 
   overlay = new ApolloOverlay(bounds, srcImage, map);
   map.mapTypes.set('moon', moonMapType);
