@@ -7,13 +7,22 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script async defer
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9E4isHeXDswrWSl2UlX6ZmRPfa3vVmuQ&callback=initMap">
-          type="text/javascript"></script>
-    <script src="http://alderaan.arc.nasa.gov/maps/nasamaps.js"
-    type="text/javascript"></script>
+        </script>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
   </head>
   <body>
     <div id="map"></div>
-      <script>
+    <script>
+
 
 function test () {
   console.log("testing")
@@ -74,13 +83,8 @@ function getNormalizedCoord(coord, zoom) {
 }
 
     </script>
-<style>
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
 
+<style>
       #map {
         height:800px;
         margin: auto;
