@@ -37,6 +37,10 @@
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 11,
       center: {lat: 11.13, lng: 69.13},
+      streetViewControl: false,
+      mapTypeControlOptions: {
+      mapTypeIds: ['moon']
+      }
       mapTypeId: google.maps.MapTypeId.SATELLITE
     });
 
