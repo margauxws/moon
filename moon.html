@@ -36,66 +36,78 @@
   console.log("testing")
 }
 var overlay;
-  ApolloOverlay.prototype = new google.maps.OverlayView();
+ApolloOverlay.prototype = new google.maps.OverlayView();
+
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 11,
     center: {lat: 11.13, lng: 69.13},
-    zoom: 10,
-    streetViewControl: false,
-    });
+    mapTypeId: google.maps.MapTypeId.SATELLITE
+  });
+
   var bounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(15.19,67.52)
-    new google.maps.LatLng(9.58,65.1))
-  var srcImage = "http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png"
-  }
-  overlay = new Apoll0Overlay(bounds, srcImage, map);
+      new google.maps.LatLng(12.64, 73.2),
+      new google.maps.LatLng(9.58, 65.1));
+
+  var srcImage = 'https://developers.google.com/maps/documentation/' +
+      'http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png';
+
+  overlay = new ApolloOverlay(bounds, srcImage, map);
+}
+
+function ApolloOverlay(bounds, image, map) {
+
+  this.bounds_ = bounds;
+  this.image_ = image;
+  this.map_ = map;
+  this.div_ = null;
+  this.setMap(map);
+}
+
+ApolloOverlay.prototype.onAdd = function() {
+
+  var div = document.createElement('div');
+  div.style.borderStyle = 'none';
+  div.style.borderWidth = '0px';
+  div.style.position = 'absolute';
+
+  var img = document.createElement('img');
+  img.src = this.image_;
+  img.style.width = '100%';
+  img.style.height = '100%';
+  img.style.position = 'absolute';
+  div.appendChild(img);
+
+  this.div_ = div;
+
+  var panes = this.getPanes();
+  panes.overlayLayer.appendChild(div);
 };
 
-  function ApolloOverlay(bounds, image, map) {
-    this.bounds_ = bounds;
-    this.image_ = image;
-    this.map_ = map;
-    this.div_ = null;
-    this.setMap(map);
-  };
+ApolloOverlay.prototype.draw = function() {
 
-  ApolloOverlay.prototype.onAdd = function() {
 
-    var div = document.createElement('div');
-    div.style.borderStyle = 'none';
-    div.style.borderWidth = '0px';
-    div.style.position = 'absolute';
+  var overlayProjection = this.getProjection();
 
-    var img = document.createElement('img');
-    img.src = this.image_;
-    img.style.width = '100%';
-    img.style.height = '100%';
-    img.style.position = 'absolute';
-    div.appendChild(img);
 
-    this.div_ = div;
+  var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+  var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
 
-    var panes = this.getPanes();
-    panes.overlayLayer.appendChild(div);
-  };
 
-  ApolloOverlay.prototype.draw = function() {
-    var overlayProjection = this.getProjection();
-    var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
-    var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
-    var div = this.div_;
-    div.style.left = sw.x + 'px';
-    div.style.top = ne.y + 'px';
-    div.style.width = (ne.x - sw.x) + 'px';
-    div.style.height = (sw.y - ne.y) + 'px';
-  };
+  var div = this.div_;
+  div.style.left = sw.x + 'px';
+  div.style.top = ne.y + 'px';
+  div.style.width = (ne.x - sw.x) + 'px';
+  div.style.height = (sw.y - ne.y) + 'px';
+};
 
-  ApolloOverlay.prototype.onRemove = function() {
-    this.div_.parentNode.removeChild(this.div_);
-    this.div_ = null;
-  };
-  });
+ApolloOverlay.prototype.onRemove = function() {
+  this.div_.parentNode.removeChild(this.div_);
+  this.div_ = null;
+};
+
+google.maps.event.addDomListener(window, 'load', initMap);
 
   var moonMapType = new google.maps.ImageMapType({
     getTileUrl: function(coord, zoom) {
