@@ -44,7 +44,7 @@
       streetViewControl: false,
       mapTypeControlOptions: {
       mapTypeIds: ['moon']
-    }
+      }
     });
 
     var imageBounds = {
@@ -62,46 +62,202 @@
     var magnitude = feature.getProperty('Diameter');
     return {
       icon: getCircle(magnitude)
-    }
+    };
   });
-
+}
 
 function getCircle(magnitude) {
   var circle = {
     path: google.maps.SymbolPath.CIRCLE,
-    fillColor: 'none',
-    fillOpacity: .1,
+    fillColor: 'red',
+    fillOpacity: .2,
     scale: Math.pow(2, magnitude) / 2,
     strokeColor: 'white',
     strokeWeight: .5
   };
   return circle;
-};
+}
 
 function eqfeed_callback(results) {
   map.data.addGeoJson(results);
-};
+}
 
 google.maps.event.addDomListener(window, 'load');
 
-function getNormalizedCoord(coord, zoom) {
-  var y = coord.y;
-  var x = coord.x;
-  var tileRange = 1 << zoom;
-  if (y < 0 || y >= tileRange) {
-  return null;
-  }
-  if (x < 0 || x >= tileRange) {
-  x = (x % tileRange + tileRange) % tileRange;
-  }
-  return {x: x, y: y};
-};
+/*
+    ApolloOverlay = new google.maps.GroundOverlay('http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png',imageBounds);
+    ApolloOverlay.setMap('map');
 
-initMap();
-}
+    map.mapTypes.set('moon', moonMapType);
+    map.setMapTypeId('moon');
+    }
+
+    function ApolloOverlay(bounds, image, map) {
+
+    this.bounds_ = bounds;
+    this.image_ = image;
+    this.map_ = map;
+    this.div_ = null;
+    this.setMap(map);
+    }
+
+  ApolloOverlay.prototype = new google.maps.OverlayView();
+
+
+  ApolloOverlay.prototype.onAdd = function() {
+
+    var div = document.createElement('div');
+    div.style.borderStyle = 'none';
+    div.style.borderWidth = '0px';
+    div.style.position = 'absolute';
+
+    var img = document.createElement('img');
+    img.src = this.image_;
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.position = 'absolute';
+    div.appendChild(img);
+
+    this.div_ = div;
+
+    var panes = this.getPanes();
+    panes.overlayLayer.appendChild(div);
+  };
+
+  ApolloOverlay.prototype.draw = function() {
+
+
+    var overlayProjection = this.getProjection();
+
+
+    var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+    var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+
+
+    var div = this.div_;
+    div.style.left = sw.x + 'px';
+    div.style.top = ne.y + 'px';
+    div.style.width = (ne.x - sw.x) + 'px';
+    div.style.height = (sw.y - ne.y) + 'px';
+  };
+
+  ApolloOverlay.prototype.onRemove = function() {
+    this.div_.parentNode.removeChild(this.div_);
+    this.div_ = null;
+  };
+
+  // google.maps.event.addDomListener(window, 'load', initMap);
+
+  function initMap() {
+var map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: 0, lng: 0},
+  zoom: 2,
+  streetViewControl: false,
+  mapTypeControlOptions: {
+    mapTypeIds: ['moon']
+  }
 });
 
+var moonMapType = new google.maps.ImageMapType({
+  getTileUrl: function(coord, zoom) {
+      var normalizedCoord = getNormalizedCoord(coord, zoom);
+      if (!normalizedCoord) {
+        return null;
+      }
+      var bound = Math.pow(2, zoom);
+      return '//mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw' +
+          '/' + zoom + '/' + normalizedCoord.x + '/' +
+          (bound - normalizedCoord.y - 1) + '.jpg';
+  },
+  tileSize: new google.maps.Size(256, 256),
+  maxZoom: 9,
+  minZoom: 0,
+  radius: 1738000,
+  name: 'Moon'
+});
 
+map.mapTypes.set('moon', moonMapType);
+map.setMapTypeId('moon');
+}
+
+// Adding kml data
+/*
+var kmlLayer = new google.maps.KmlLayer();
+var kmlUrl = 'https://github.com/margauxws/moon/blob/gh-pages/Craters.kml';
+var kmlOptions = {
+  suppressInfoWindows: true,
+  preserveViewport: false,
+  map: 'moon'
+};
+var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
+
+Creating a sidebar or display for the crater data when clicked on
+
+var content = icon.featureData.InfoWindow;
+google.maps.icon.addListener(kmlLayer, 'click', function(event) {
+  var content = icon.featureData.infoWindowHtml;
+    var data = document.getElementById('capture');
+  data.innerHTML = content;
+});
+
+// Visualization of styling and crater size
+var icon = document.createElement('icon');
+
+  icon.src = 'https://github.com/margauxws/moon/blob/gh-pages/Craters.kmlp';
+  document.getElementsByTagName('head')[0].appendChild(icon);
+
+  icon.data.setStyle(function(feature) {
+    var magnitude = feature.getProperty('Diameter');
+    return {
+      icon: getCircle(magnitude)
+    };
+  });
+
+function getCircle(magnitude) {
+  var circle = {
+    path: google.maps.SymbolPath.CIRCLE,
+    fillColor: 'none',
+    fillOpacity: 0,
+    scale: Math.pow(2, magnitude) / 2,
+    strokeColor: 'white',
+    strokeWeight: .5
+  };
+  return circle;
+}
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+*/
+
+// Normalizes the coords that tiles repeat across the x axis (horizontally)
+// like the standard Google map tiles.
+function getNormalizedCoord(coord, zoom) {
+var y = coord.y;
+var x = coord.x;
+
+// tile range in one direction range is dependent on zoom level
+// 0 = 1 tile, 1 = 2 tiles, 2 = 4 tiles, 3 = 8 tiles, etc
+var tileRange = 1 << zoom;
+
+// don't repeat across y-axis (vertically)
+if (y < 0 || y >= tileRange) {
+  return null;
+}
+
+// repeat across x-axis
+if (x < 0 || x >= tileRange) {
+  x = (x % tileRange + tileRange) % tileRange;
+}
+
+return {x: x, y: y};
+}
+
+
+    initMap();
+  }
+});
+
+  //end jquery document ready
       </script>
 
   </head>
