@@ -168,7 +168,7 @@ google.maps.icon.addListener(kmlLayer, 'click', function(event) {
     var data = document.getElementById('capture');
   data.innerHTML = content;
 });
-*/
+
 // Visualization of styling and crater size
 var icon = document.createElement('icon');
 
@@ -177,7 +177,7 @@ var icon = document.createElement('icon');
 
   icon.data.setStyle(function(feature) {
     var magnitude = feature.getProperty('Diameter');
-    return { 
+    return {
       icon: getCircle(magnitude)
     };
   });
@@ -193,7 +193,7 @@ function getCircle(magnitude) {
   };
   return circle;
 }
-
+*/
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
