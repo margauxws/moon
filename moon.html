@@ -83,6 +83,8 @@ function eqfeed_callback(results) {
 }
 
 google.maps.event.addDomListener(window, 'load');
+initMap();
+)}
 /*
     ApolloOverlay = new google.maps.GroundOverlay('http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png',imageBounds);
     ApolloOverlay.setMap('map');
@@ -251,9 +253,6 @@ if (x < 0 || x >= tileRange) {
 return {x: x, y: y};
 }
 
-
-    initMap();
-  }
 
   //end jquery document ready
       </script>
