@@ -162,7 +162,7 @@ var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
 
 // Creating a sidebar or display for the crater data when clicked on
 
-var content = event.featureData.infoWindowHtml;
+var content = event.featureData.InfoWindow;
 google.maps.event.addListener(kmlLayer, 'click', function(event) {
   var content = event.featureData.infoWindowHtml;
     var data = document.getElementById('capture');
