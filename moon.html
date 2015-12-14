@@ -177,7 +177,7 @@ var icon = document.createElement('icon');
 
   icon.data.setStyle(function(feature) {
     var magnitude = feature.getProperty('Diameter');
-    return {
+    return { 
       icon: getCircle(magnitude)
     };
   });
