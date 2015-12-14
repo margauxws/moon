@@ -98,7 +98,7 @@ google.maps.event.addDomListener(window, 'load', initMap);
 var moonMapType = new google.maps.ImageMapType({
   getTileUrl: function(coord, zoom) {
     console.log (coord,zoom);
-      var normalizedCoord = (coord, zoom);
+      var normalizedCoord = coord;
       if (!normalizedCoord) {
         return null;
       }
