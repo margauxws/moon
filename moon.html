@@ -26,6 +26,7 @@
       z-index: 3
     }
     </style>
+
     <script>
     $(document).ready(function(){
     function test () {
@@ -47,18 +48,44 @@
       east: 9.58,
       west: 12.64
     };
+  var script = document.createElement('script');
+      script.src = 'https://deb32cb1310ab4c76c879fdcc044b9beba4c6ec6.googledrive.com/host/0Bw0s-MAw6bC9WV9EUGVvSjdfVDg/xsMapping.html?f=craters.craters.291713093.json';
+      document.getElementsByTagName('head')[0].appendChild(script);
+  map.data.setStyle(function(feature) {
+    var magnitude = feature.getProperty('mag');
+    return {
+      icon: getCircle(magnitude)
+    };
+  });
+
+function getCircle(magnitude) {
+  var circle = {
+    path: google.maps.SymbolPath.CIRCLE,
+    fillColor: 'red',
+    fillOpacity: .2,
+    scale: Math.pow(2, magnitude) / 2,
+    strokeColor: 'white',
+    strokeWeight: .5
+  };
+  return circle;
+}
+function eqfeed_callback(results) {
+  map.data.addGeoJson(results);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+/*
     ApolloOverlay = new google.maps.GroundOverlay('http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png',imageBounds);
-    ApolloOverlay.setMap(map);
+    ApolloOverlay.setMap('map');
     map.mapTypes.set('moon', moonMapType);
     map.setMapTypeId('moon');
-  }
-  function ApolloOverlay(bounds, image, map) {
+    }
+    function ApolloOverlay(bounds, image, map) {
     this.bounds_ = bounds;
     this.image_ = image;
     this.map_ = map;
     this.div_ = null;
     this.setMap(map);
-  }
+    }
   ApolloOverlay.prototype = new google.maps.OverlayView();
   ApolloOverlay.prototype.onAdd = function() {
     var div = document.createElement('div');
@@ -119,6 +146,46 @@ var moonMapType = new google.maps.ImageMapType({
 map.mapTypes.set('moon', moonMapType);
 map.setMapTypeId('moon');
 }
+// Adding kml data
+/*
+var kmlLayer = new google.maps.KmlLayer();
+var kmlUrl = 'https://github.com/margauxws/moon/blob/gh-pages/Craters.kml';
+var kmlOptions = {
+  suppressInfoWindows: true,
+  preserveViewport: false,
+  map: 'moon'
+};
+var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
+Creating a sidebar or display for the crater data when clicked on
+var content = icon.featureData.InfoWindow;
+google.maps.icon.addListener(kmlLayer, 'click', function(event) {
+  var content = icon.featureData.infoWindowHtml;
+    var data = document.getElementById('capture');
+  data.innerHTML = content;
+});
+// Visualization of styling and crater size
+var icon = document.createElement('icon');
+  icon.src = 'https://github.com/margauxws/moon/blob/gh-pages/Craters.kmlp';
+  document.getElementsByTagName('head')[0].appendChild(icon);
+  icon.data.setStyle(function(feature) {
+    var magnitude = feature.getProperty('Diameter');
+    return {
+      icon: getCircle(magnitude)
+    };
+  });
+function getCircle(magnitude) {
+  var circle = {
+    path: google.maps.SymbolPath.CIRCLE,
+    fillColor: 'none',
+    fillOpacity: 0,
+    scale: Math.pow(2, magnitude) / 2,
+    strokeColor: 'white',
+    strokeWeight: .5
+  };
+  return circle;
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+*/
 // Normalizes the coords that tiles repeat across the x axis (horizontally)
 // like the standard Google map tiles.
 function getNormalizedCoord(coord, zoom) {
@@ -138,7 +205,8 @@ if (x < 0 || x >= tileRange) {
 return {x: x, y: y};
 }
     initMap();
-  })
+  }
+});
   //end jquery document ready
       </script>
 
@@ -151,9 +219,11 @@ return {x: x, y: y};
       <div id = "Apollo"> Apollo </div>
       <div id = "panoramas"> Panoramas </div>
     </div>
+  </div>
+  <div class = "sidebar">
+    <h2> Info </h2>
 </div>
-<div class = "sidebar">
-</div>
+
     <div id="map"></div>
 
 
