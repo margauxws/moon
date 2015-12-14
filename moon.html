@@ -38,12 +38,12 @@
   var ApolloOverlay;
 
   function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('moon'), {
       zoom: 2,
       center: {lat: 11.13, lng: 69.13},
       streetViewControl: false,
       mapTypeControlOptions: {
-      mapTypeIds: ['map']
+      mapTypeIds: ['moon']
       }
     });
 
@@ -55,7 +55,7 @@
     };
 
     ApolloOverlay = new google.maps.GroundOverlay('http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png',imageBounds);
-    ApolloOverlay.setMap(map);
+    ApolloOverlay.setMap(moon);
 
     map.mapTypes.set('moon', moonMapType);
     map.setMapTypeId('moon');
@@ -67,7 +67,7 @@
     this.image_ = image;
     this.map_ = map;
     this.div_ = null;
-    this.setMap(map);
+    this.setMap(moon);
   }
 
   ApolloOverlay.prototype = new google.maps.OverlayView();
@@ -118,7 +118,7 @@
   // google.maps.event.addDomListener(window, 'load', initMap);
 
   function initMap() {
-var map = new google.maps.Map(document.getElementById('map'), {
+var map = new google.maps.Map(document.getElementById('moon'), {
   center: {lat: 0, lng: 0},
   zoom: 2,
   streetViewControl: false,
@@ -146,7 +146,7 @@ var moonMapType = new google.maps.ImageMapType({
 });
 
 map.mapTypes.set('moon', moonMapType);
-map.setMapTypeId(map);
+map.setMapTypeId('moon');
 }
 
 // Adding kml data
