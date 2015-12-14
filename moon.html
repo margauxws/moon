@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <link rel="stylesheet" media="screen" href="MoonChild.css">
+    <link rel="EditURI" type="application/rsd+xml" href="//www.mediawiki.org/w/api.php?action=rsd" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9E4isHeXDswrWSl2UlX6ZmRPfa3vVmuQ"></script>
     <style>
@@ -29,13 +30,11 @@
 
     $(document).ready(function(){
 
-
-
     function test () {
     console.log("testing")
   }
-  var ApolloOverlay;
 
+  var ApolloOverlay;
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
