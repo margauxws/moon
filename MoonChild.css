@@ -4,9 +4,6 @@ html {
 #topbar{
   font-family: Glacial Indifference, sans-serif;
   height: 40px;
-  align-items: center;
-  justify-content:center;
-  vertical-align: center;
   height:100%; width: 100%;
   position: fixed;
   display: flex;
@@ -14,17 +11,7 @@ html {
   background-color: #F2EEE9; opacity: 50%;
 }
 
-
-
 h1 {
   size: 30px;
   margin: auto;
-}
-
-
-#imagetypes {
-  justify-content: right;
-  padding-left: 20px; padding-right: 20px;
-  size: 20px;
-  z-index: 5;
 }
