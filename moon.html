@@ -156,9 +156,21 @@ var kmlUrl = 'https://github.com/margauxws/moon/blob/gh-pages/Craters.kml';
 var kmlOptions = {
   suppressInfoWindows: true,
   preserveViewport: false,
-  map: map
+  map: 'moon'
 };
 var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
+
+// Creating a sidebar or display for the crater data when clicked on
+
+var content = event.featureData.infoWindowHtml;
+google.maps.event.addListener(kmlLayer, 'click', function(event) {
+  var content = event.featureData.infoWindowHtml;
+  var data = document.getElementById('capture');
+  data.innerHTML = content;
+});
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
 
 
 // Normalizes the coords that tiles repeat across the x axis (horizontally)
