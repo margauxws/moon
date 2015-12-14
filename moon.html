@@ -59,7 +59,7 @@
       document.getElementsByTagName('head')[0].appendChild(script);
 
   map.data.setStyle(function(feature) {
-    var magnitude = feature.getProperty('mag');
+    var magnitude = feature.getProperty('Diameter');
     return {
       icon: getCircle(magnitude)
     };
