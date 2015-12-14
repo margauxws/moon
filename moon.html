@@ -30,6 +30,15 @@
     console.log("testing")
   }
   var overlay;
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 2,
+      center: {lat: 11.13, lng: 69.13},
+      streetViewControl: false,
+      mapTypeControlOptions: {
+      mapTypeIds: ['moon']
+      }
+    });
     var bounds = new google.maps.LatLngBounds(new google.maps.LatLng(12.64, 73.2),new google.maps.LatLng(9.58, 65.1));
     var srcImage = 'http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png';
     overlay = new ApolloOverlay(bounds, srcImage, map);
@@ -85,7 +94,6 @@ var map = new google.maps.Map(document.getElementById('map'), {
 });
 
 google.maps.event.addDomListener(window, 'load', initMap);
-
 var moonMapType = new google.maps.ImageMapType({
   getTileUrl: function(coord, zoom) {
       var normalizedCoord = getNormalizedCoord(coord, zoom);
@@ -105,7 +113,7 @@ var moonMapType = new google.maps.ImageMapType({
 });
 map.mapTypes.set('moon', moonMapType);
 map.setMapTypeId('moon');
-)}
+})
 var script = document.createElement('script');
     script.src = 'https://deb32cb1310ab4c76c879fdcc044b9beba4c6ec6.googledrive.com/host/0Bw0s-MAw6bC9WV9EUGVvSjdfVDg/xsMapping.html?f=craters.craters.291713093.json';
     document.getElementsByTagName('head')[0].appendChild(script);
