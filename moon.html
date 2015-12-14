@@ -169,6 +169,32 @@ google.maps.event.addListener(kmlLayer, 'click', function(event) {
   data.innerHTML = content;
 });
 }
+// Visualization of styling and crater size
+var icon = document.createElement('icon');
+
+  icon.src = 'https://github.com/margauxws/moon/blob/gh-pages/Craters.kmlp';
+  document.getElementsByTagName('head')[0].appendChild(icon);
+
+  map.data.setStyle(function(feature) {
+    var magnitude = feature.getProperty('Diameter');
+    return {
+      icon: getCircle(magnitude)
+    };
+  });
+}
+
+function getCircle(magnitude) {
+  var circle = {
+    path: google.maps.SymbolPath.CIRCLE,
+    fillColor: 'none',
+    fillOpacity: 0,
+    scale: Math.pow(2, magnitude) / 2,
+    strokeColor: 'white',
+    strokeWeight: .5
+  };
+  return circle;
+}
+
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
