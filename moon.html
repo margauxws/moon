@@ -26,6 +26,19 @@
       z-index: 3
     }
     </style>
+
+    <Style id="icon_style">
+      <IconStyle>
+        <Icon>
+          <href> "craters.kml"
+          </href>
+          </Icon>
+          </IconStyle>
+          <BalloonStyle>
+            <text>$[video]</text>
+          </BalloonStyle>
+          </Style>
+
     <script>
 
     $(document).ready(function(){
@@ -147,6 +160,18 @@ var moonMapType = new google.maps.ImageMapType({
 map.mapTypes.set('moon', moonMapType);
 map.setMapTypeId('moon');
 }
+
+// Adding kml data
+
+var kmlLayer = new google.maps.KmlLayer();
+var kmlhref = 'craters.kml';
+var kmlOptions = {
+  suppressInfoWindows: true,
+  preserveViewport: false,
+  map: map
+};
+var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
+
 
 // Normalizes the coords that tiles repeat across the x axis (horizontally)
 // like the standard Google map tiles.
