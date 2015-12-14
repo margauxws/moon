@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <link rel="stylesheet" media="screen" href="MoonChild.css">
+    <link rel="EditURI" type="application/rsd+xml" href="//www.mediawiki.org/w/api.php?action=rsd" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9E4isHeXDswrWSl2UlX6ZmRPfa3vVmuQ"></script>
     <style>
@@ -30,7 +31,7 @@
     function test () {
     console.log("testing")
   }
-  var overlay;
+  var ApolloOverlay;
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 2,
@@ -40,12 +41,17 @@
       mapTypeIds: ['moon']
       }
     });
-    var bounds = new google.maps.LatLngBounds(new google.maps.LatLng(12.64, 73.2),new google.maps.LatLng(9.58, 65.1));
-    var srcImage = 'http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png';
-    overlay = new ApolloOverlay(bounds, srcImage, map);
+    var imageBounds = {
+      north: 73.2,
+      south: 65.1,
+      east: 9.58,
+      west: 12.64
+    };
+    ApolloOverlay = new google.maps.GroundOverlay('http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png',imageBounds);
+    ApolloOverlay.setMap(map);
     map.mapTypes.set('moon', moonMapType);
     map.setMapTypeId('moon');
-
+  }
   function ApolloOverlay(bounds, image, map) {
     this.bounds_ = bounds;
     this.image_ = image;
@@ -132,9 +138,9 @@ if (x < 0 || x >= tileRange) {
 return {x: x, y: y};
 }
     initMap();
-  }
-});
-</script>
+  })
+  //end jquery document ready
+      </script>
 
   </head>
   <body>
