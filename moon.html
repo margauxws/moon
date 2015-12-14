@@ -175,7 +175,7 @@ var icon = document.createElement('icon');
   icon.src = 'https://github.com/margauxws/moon/blob/gh-pages/Craters.kmlp';
   document.getElementsByTagName('head')[0].appendChild(icon);
 
-  map.data.setStyle(function(feature) {
+  moon.data.setStyle(function(feature) {
     var magnitude = feature.getProperty('Diameter');
     return {
       icon: getCircle(magnitude)
