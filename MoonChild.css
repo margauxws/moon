@@ -14,9 +14,21 @@ html {
   background-color: #F2EEE9; opacity: 50%;
 }
 
+#sidebar{
+  width: 50px;
+  float: right;
+  background-color: black;
+  opacity: .3;
+  position: fixed, absolute;
+}
+
 h1 {
   size: 30px;
-  margin-left: 70px;
+  margin: auto;
+}
+h2 {
+  size: 15px;
+  margin: auto;
 }
 #imagetypes {
   justify-content: right;
