@@ -45,7 +45,7 @@
     overlay = new ApolloOverlay(bounds, srcImage, map);
     map.mapTypes.set('moon', moonMapType);
     map.setMapTypeId('moon');
-
+}
   function ApolloOverlay(bounds, image, map) {
     this.bounds_ = bounds;
     this.image_ = image;
@@ -157,10 +157,9 @@ if (x < 0 || x >= tileRange) {
 return {x: x, y: y};
 }
     initMap();
-  }
-  });//end jquery document ready
-
-      </script>
+  });
+  //end jquery document ready
+  </script>
 
   </head>
   <body>
