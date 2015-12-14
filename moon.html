@@ -114,10 +114,13 @@ var moonMapType = new google.maps.ImageMapType({
 });
 map.mapTypes.set('moon', moonMapType);
 map.setMapTypeId('moon');
-}
-var script = document.createElement('script');
-    script.src = 'https://deb32cb1310ab4c76c879fdcc044b9beba4c6ec6.googledrive.com/host/0Bw0s-MAw6bC9WV9EUGVvSjdfVDg/xsMapping.html?f=craters.craters.291713093.json';
-    document.getElementsByTagName('head')[0].appendChild(script);
+};
+function loadScript(){
+  var script = document.createElement('script');
+    script.type = "json";
+      script.src = 'https://deb32cb1310ab4c76c879fdcc044b9beba4c6ec6.googledrive.com/host/0Bw0s-MAw6bC9WV9EUGVvSjdfVDg/xsMapping.html?f=craters.craters.291713093.json';
+      document.getElementsByTagName('name')[0].appendChild(script);
+  };
 
     initMap();
   });
