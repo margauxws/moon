@@ -13,7 +13,13 @@ html {
   z-index:4;
   background-color: #F2EEE9; opacity: 50%;
 }
-
+#sidebar {
+  width: 50px;
+  float: right;
+  position: absolute;
+  background-color: black;
+  opacity: 0.3;
+}
 h1 {
   size: 30px;
   margin-left: 70px;
