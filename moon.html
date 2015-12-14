@@ -161,14 +161,14 @@ var kmlOptions = {
 var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
 
 // Creating a sidebar or display for the crater data when clicked on
-
+/* (NOT WORKING)
 var content = icon.featureData.InfoWindow;
 google.maps.icon.addListener(kmlLayer, 'click', function(event) {
   var content = icon.featureData.infoWindowHtml;
     var data = document.getElementById('capture');
   data.innerHTML = content;
 });
-
+*/
 // Visualization of styling and crater size
 var icon = document.createElement('icon');
 
