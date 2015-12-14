@@ -116,8 +116,9 @@ map.setMapTypeId('moon');
 var script = document.createElement('script');
     script.src = 'https://deb32cb1310ab4c76c879fdcc044b9beba4c6ec6.googledrive.com/host/0Bw0s-MAw6bC9WV9EUGVvSjdfVDg/xsMapping.html?f=craters.craters.291713093.json';
     document.getElementsByTagName('head')[0].appendChild(script);
-map.data.setStyle(function(feature) {
-  var magnitude = feature.getProperty('mag');
+
+/*map.data.setStyle(function(feature) {
+  var magnitude = feature.getProperty('Diameter');
   return {
     icon: getCircle(magnitude)
   };
