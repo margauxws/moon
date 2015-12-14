@@ -55,7 +55,7 @@
     };
 
     ApolloOverlay = new google.maps.GroundOverlay('http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png',imageBounds);
-    ApolloOverlay.setMap(map);
+    ApolloOverlay.setMap('map');
 
     map.mapTypes.set('moon', moonMapType);
     map.setMapTypeId('moon');
@@ -196,7 +196,7 @@ function getCircle(magnitude) {
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
+*/
 
 // Normalizes the coords that tiles repeat across the x axis (horizontally)
 // like the standard Google map tiles.
