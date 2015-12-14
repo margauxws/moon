@@ -34,7 +34,7 @@
     function test () {
     console.log("testing")
   }
-  var overlay;
+  var ApolloOverlay;
 
 
   function initMap() {
@@ -47,11 +47,16 @@
       }
     });
 
-    var bounds = new google.maps.LatLngBounds(new google.maps.LatLng(12.64, 73.2),new google.maps.LatLng(9.58, 65.1));
+    var imageBounds = {
+      north: 73.2,
+      south: 65.1,
+      east: 9.58,
+      west: 12.64
+    };
 
-    var srcImage = 'http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png';
+    ApolloOverlay = new google.maps.GroundOverlay('http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png',imageBounds);
+    ApolloOverlay.setMap(map);
 
-    overlay = new ApolloOverlay(bounds, srcImage, map);
     map.mapTypes.set('moon', moonMapType);
     map.setMapTypeId('moon');
   }
