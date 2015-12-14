@@ -55,7 +55,7 @@
     };
 
     ApolloOverlay = new google.maps.GroundOverlay('http://apollo.sese.asu.edu/data/metric/AS15/png/AS15-M-0361_SML.png',imageBounds);
-    ApolloOverlay.setMap('map');
+    ApolloOverlay.setMap(map);
 
     map.mapTypes.set('moon', moonMapType);
     map.setMapTypeId('moon');
@@ -160,8 +160,8 @@ var kmlOptions = {
 };
 var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
 
-Creating a sidebar or display for the crater data when clicked on
-
+// Creating a sidebar or display for the crater data when clicked on
+/* (NOT WORKING)
 var content = icon.featureData.InfoWindow;
 google.maps.icon.addListener(kmlLayer, 'click', function(event) {
   var content = icon.featureData.infoWindowHtml;
@@ -224,8 +224,7 @@ return {x: x, y: y};
 
     initMap();
   }
-});
-  //end jquery document ready
+});  //end jquery document ready
       </script>
 
   </head>
@@ -237,11 +236,9 @@ return {x: x, y: y};
       <div id = "Apollo"> Apollo </div>
       <div id = "panoramas"> Panoramas </div>
     </div>
-  </div>
-  <div class = "sidebar">
-    <h2> Info </h2>
 </div>
-
+<div class = "sidebar">
+</div>
     <div id="map"></div>
 
 
